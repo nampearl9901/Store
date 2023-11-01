@@ -1,19 +1,22 @@
-//import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import './App.css';
-import HomePage from "./Pages/HomePage/HomePage"
-//import { routes } from "Routes/routes";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Spinner from "./Components/spinner/Spinner";
+import { routes } from "./Routes/routes";
+
+
 function App() {
   return (
     <div className="App">
-    {/* <Spinner />
+    <Spinner />
     <BrowserRouter>
       <Routes>
         {routes.map(({ path, component }, index) => {
           return <Route key={index} path={path} element={component} />;
         })}
       </Routes>
-    </BrowserRouter> */}
-    <HomePage/>
+    </BrowserRouter>
+   
   </div>
 
   );

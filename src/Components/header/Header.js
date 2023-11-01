@@ -1,6 +1,6 @@
 import React from 'react'
 import "./Header.css"
-import UserNav from './UserNav';
+
 
 
 
@@ -8,7 +8,7 @@ import UserNav from './UserNav';
 
 
 export default function Header() {
-
+ 
   return (
     <div className='home'>
     <div className='homenav'>
@@ -19,14 +19,12 @@ export default function Header() {
           <span>Sản Phẩm</span>
           <span>Truyền Thông</span>
           <span>Liên Hệ</span>
-     
-
-   
+          
+          <div className='button'>
+      đăng nhập
+        </div>
       </nav>
      
-      <div className='button'>
-        <UserNav />
-        </div>
       </div>
       
        </div>

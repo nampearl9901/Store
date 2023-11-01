@@ -1,4 +1,7 @@
 import axios from "axios";
+import { BAT_LOADING, TAT_LOADING } from "../redux/constants/spinnerContant";
+import {store } from "../index";
+
 
 
 // khai báo token
@@ -26,6 +29,8 @@ export const https = axios.create({
     //dùng để gọi và khai báo token khi API cần
    //headers: configHeaders(),
   });
+  //
+
   // Add a request interceptor
 https.interceptors.request.use(
     function (config) {

@@ -1,0 +1,19 @@
+/* CSS */
+body {
+    position: relative;
+    width: 100vw; /* Chiều rộng của màn hình */
+    height: 100vh; /* Chiều cao của màn hình */
+  }
+  .spinner {
+    width: 100vw; /* Chiều rộng của màn hình */
+    height: 100vh; /* Chiều cao của màn hình */
+ 
+    top: 0; /* Đặt top là 0 */
+    left: 0; /* Đặt left là 0 */
+    max-width: 100%; /* Chiều rộng tối đa */
+    max-height: 100%; /* Chiều cao tối đa */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }

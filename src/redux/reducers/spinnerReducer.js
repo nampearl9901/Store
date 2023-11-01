@@ -1,4 +1,4 @@
-import { BAT_LOADING, TAT_LOADING } from "./spinnerContant";
+import { BAT_LOADING, TAT_LOADING } from "../constants/spinnerContant";
 
 let initialState = {
   isLoading: false,
