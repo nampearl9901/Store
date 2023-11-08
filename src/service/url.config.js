@@ -30,6 +30,21 @@ export const https = axios.create({
    //headers: configHeaders(),
   });
   //
+  const token = localStorage.getItem('Authorization');
+  export const configHeaders = () => {
+    return {
+     Authorization: `Bearer ${token}`,
+      
+    };
+  };
+  export const api = axios.create({
+    baseURL: BASE_URL,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+    //dùng để gọi và khai báo token khi API cần
+   headers: configHeaders(),
+  });
+
+      
+ 
 
   // Add a request interceptor
 https.interceptors.request.use(

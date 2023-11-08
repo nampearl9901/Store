@@ -1,9 +1,9 @@
 import React from 'react'
-import Header from '../../Components/header/Header'
-import Banner from '../../Components/banner/Banner'
 import Footer from '../../Components/footer/Footer'
+import Banner from '../../Components/banner/Banner'
+import Header from '../../Components/header/Header'
 
-export default function DetailPage() {
+export default function Communication() {
   return (
     <div>    <Header/>
     <Banner/>

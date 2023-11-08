@@ -5,6 +5,7 @@ import Spinner from "./Components/spinner/Spinner";
 import { routes } from "./Routes/routes";
 
 
+
 function App() {
   return (
     <div className="App">
@@ -16,6 +17,7 @@ function App() {
         })}
       </Routes>
     </BrowserRouter>
+
    
   </div>
 

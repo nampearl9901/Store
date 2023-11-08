@@ -39,7 +39,7 @@ export default function Carousels() {
     height: '800px',
     lineHeight: '160px',
     textAlign: 'center',
-    marginTop:'50px',
+  
     borderRadius: '0px 0px 20px 20px',
   };
     

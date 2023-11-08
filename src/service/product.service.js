@@ -9,8 +9,11 @@ export const productService = {
 
  getProduct: ()=>{
     return https.get("/products/getproduct");
- }
-
+ },
+ 
+ getProductByID: ()=>{
+   return https.get("/products/get/{id}");
+}
 }
 export default productService;
 

@@ -1,5 +1,7 @@
 import React from 'react'
 import "./Header.css"
+import UserNav from './UserNav'
+import { NavLink } from 'react-router-dom'
 
 
 
@@ -12,19 +14,19 @@ export default function Header() {
   return (
     <div className='home'>
     <div className='homenav'>
-      <p>DaLat Dairy</p>
+    <NavLink className={"text-logo"} to="/home"> DaLat Dairy</NavLink>
+  
       <nav>
       
-          <span>Trang Chủ</span>
-          <span>Sản Phẩm</span>
-          <span>Truyền Thông</span>
-          <span>Liên Hệ</span>
+      <NavLink className={"span"} to="/home">Trang Chủ</NavLink>
+          <NavLink className={"span"} to="/product">Sản Phẩm</NavLink>
+          <NavLink className={"span"} to="/communication">Truyền Thông</NavLink>
+          <NavLink className={"span"} to="/contact">Liên Hệ</NavLink>
           
-          <div className='button'>
-      đăng nhập
-        </div>
       </nav>
-     
+      <div className='button1'>
+      <UserNav/>
+        </div>
       </div>
       
        </div>

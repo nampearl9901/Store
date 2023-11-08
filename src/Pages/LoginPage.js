@@ -1,128 +1,158 @@
-import React, { useEffect } from "react";
-import { Button,  Form, Input, message } from "antd";
-
+import React, { useEffect, useState } from 'react';
+import { Button, Checkbox, Form, Input, message } from 'antd';
+import Usersev from '../service/user.service';
+import "./css/login.css";
 import { NavLink, useNavigate } from "react-router-dom";
-import { userInforLocal } from "../service/local.service";
-//import Lottie from "lottie-react";
-// import bg_car from "./assets/bg_spiderman.json";
-import { useDispatch } from "react-redux";
-import { setLoginActionService } from "../redux/action/userAction";
-
 
 export default function LoginPage() {
-  let dispatch = useDispatch();
-
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   let navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  // Check if the user is already logged in, e.g., by checking a token in local storage
   useEffect(() => {
-    let userInfor = userInforLocal.get();
-
-    if (userInfor) {
-      navigate("/");
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsLoggedIn(true);
     }
-  } );
+  }, []);
+  useEffect(() => {
+    if (isLoggedIn) {
+      // If the user is already logged in, redirect them to the home page
+      navigate("/home");
+    }
+  }, [isLoggedIn, navigate]);
+  const handleLogin = () => {
+    // Kiểm tra điều kiện email phải là "@gmail" hoặc "@yahoo"
+    if (!email.endsWith('@gmail.com') && !email.endsWith('@yahoo.com')&& !email.endsWith('@Admin.vip.com')) {
+      message.error('Email must end with "@gmail.com" or "@yahoo.com"');
+      return;
+    }
 
+    Usersev.postLogin(email, password)
+      .then((response) => {
+        // Kiểm tra xem phản hồi có chứa token không
+        if (response.data && response.data.token) {
+          // Lưu token vào local storage với tiền tố "Bearer"
+          localStorage.setItem('Authorization', `${response.data.token}`);
+          localStorage.setItem('isLoggedIn', 'true'); // Đánh dấu người dùng đã đăng nhập
+          localStorage.setItem('userEmail', email); 
+          // console.log("Login successful", response.data);
+          message.success('Login successful');
+          setIsLoggedIn(true);
+                  setTimeout(() => {
+          navigate("/home");
+      }, 500);
 
+        } else {
+          console.error("Token is undefined or not provided in the response.");
+          // Xử lý trường hợp không có token
+          message.error('Token is undefined or not provided in the response.');
+        }
+      })
+      .catch((error) => {
+        console.error("Login failed", error);
+        message.error('Login failed');
+      });
+  };
+  // if (isLoggedIn) {
+  //   // If the user is already logged in, redirect them to the home page
+  //   return navigate("/home");;
+  // }
   const onFinish = (values) => {
-    console.log("Success:", values);
-    let handleSuccess = () => {
-      message.success("Đăng Nhập Thành Công!");
+    // You can use the "values" object to get form field values
+    // console.log('Success:', values);
 
-      setTimeout(() => {
-        navigate("/");
-      }, 1000);
-    };
-    dispatch(setLoginActionService(values, handleSuccess));
+    // If you want to trigger the login action here, you can call handleLogin()
+    handleLogin();
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    console.log('Failed:', errorInfo);
   };
 
   return (
-    <div className="h-screen w-screen bg flex justify-center items-center px-20">
+    <div className='form-login'>
+          
+      <div className='form-item'>
+      <h2>Login</h2>
+    
+      <Form
+        name="basic"
+        labelCol={{
+          span: 8,
+        }}
+        wrapperCol={{
+          span: 16,
+        }}
+        style={{
+          maxWidth: 600,
+        }}
+        initialValues={{
+          remember: true,
+        }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        autoComplete="off"
+      >
+        <Form.Item
        
-      <div className="container mx-auto p-5 bg__form rounded flex">
-       
-        {/* animate */}
-        {/* <div className="w-2/5 border-red-300 border-4 rounded-3xl mr-20">
-          <Lottie animationData={bg_car} />
-        </div> */}
+          label="Email"
+          name="email"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your email',
+            },
+          ]}
+        >
+          <Input onChange={(e) => setEmail(e.target.value)} />
+        </Form.Item>
 
-        {/* end animate */}
-        <div className="w-1/2 p-20  items-center justify-center  ">
-        <div className="justify-center items-center text__Login">
-          <h1 >Login</h1>
-        </div>
-          <Form
-            className=""
-            layout="vertical"
-            name="basic"
-            labelCol={{
-              span: 8,
-            }}
-            wrapperCol={{
-              span: 24,
-            }}
-            initialValues={{
-              remember: true,
-            }}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-            autoComplete="off"
-          >
-            <Form.Item
-              label="Tài Khoản"
-              name="taiKhoan"
-              rules={[
-                {
-                  required: true,
-                  message: "Bị Thiếu Rồi!!",
-                },
-              ]}
-            >
-              <Input className="textInput" />
-            </Form.Item>
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your password!',
+            },
+          ]}
+        >
+          <Input.Password onChange={(e) => setPassword(e.target.value)} />
+        </Form.Item>
 
-            <Form.Item
-              label="Mật Khẩu"
-              name="matKhau"
-              rules={[
-                {
-                  required: true,
-                  message: "Nhập Mật Khẩu Vô Đi Ba!",
-                },
-              ]}
-            >
-              <Input.Password className="textInput" />
-            </Form.Item>
+        <Form.Item
+          name="remember"
+          valuePropName="checked"
+          wrapperCol={{
+            offset: 8,
+            span: 16,
+          }}
+        >
+          <Checkbox>Remember me</Checkbox>
+        </Form.Item>
 
-            <Form.Item
-              wrapperCol={{
-                offset: 0,
-                span: 24,
-              }}
-            >
-              <Button className="btn" htmlType="submit">
-                Submit
-              </Button>
-            </Form.Item>
-            <div>
+        <Form.Item
+          wrapperCol={{
+            offset: 8,
+            span: 16,
+          }}
+        >
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form.Item>
+        <div>
               <p href="">
                 Bạn đã tài khoản chưa?
                 <NavLink className="text" to="/register">Đăng Ký!</NavLink>
               </p>
             </div>
-          </Form>
-          <div className="container3">
-            <div id="containerid"></div>
-          </div>
-          <div className="container2">
-            <div id="containerid2"></div>
-          </div>
-        </div>
+
+      </Form>
       </div>
     </div>
   );
 }
-

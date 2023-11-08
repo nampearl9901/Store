@@ -3,6 +3,7 @@ body {
     position: relative;
     width: 100vw; /* Chiều rộng của màn hình */
     height: 100vh; /* Chiều cao của màn hình */
+    overflow-x:hidden;
   }
   .spinner {
     width: 100vw; /* Chiều rộng của màn hình */

@@ -3,7 +3,7 @@
 .homenav {
  
   
-    overflow: hidden;
+ 
 
     position: fixed;
     z-index: 1;
@@ -13,8 +13,9 @@
     align-items: center;
     width: 100%;
     border-radius: 0px 0px 15px 15px;
- margin: auto;
-    background-color: #ffffff;
+      margin: auto;
+      background-color:  rgba(255, 255, 255, 0);
+      backdrop-filter: blur(50px);
     box-shadow: 0 0 30px rgba(22, 196, 143, 0.781);
 
   }
@@ -25,16 +26,28 @@
     justify-content: center;
   }
 
-.homenav nav span{
+.homenav nav .span{
   margin: 0 50px;
  
     text-align: center;
     font-weight: 500;
     font-size: 16px;
-    text-shadow: 5px 5px rgba(0, 0, 0, 0.178);
-    
+
+    text-decoration: none;
+    color:black;
+    transition: transform 0.5s;
+    transform: scale(1); /* Kích thước ban đầu */
 }
-.homenav p{
+.homenav nav .span:hover{
+  margin: 0 50px;
+ 
+ 
+    text-shadow: 5px 5px rgba(0, 0, 0, 0.308);
+
+    color:rgb(22, 109, 180);
+    transform: scale(1.2); 
+}
+.homenav .text-logo{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 900;
     font-size: 30px;
@@ -42,6 +55,23 @@
     background-clip: text;
     color: transparent; 
     text-shadow: 5px 5px rgba(0, 0, 0, 0.178);
+    text-decoration: none;
+   
+    transform: scale(1); 
+    transition: transform 1s;
+}
+.homenav .text-logo:hover{
+ 
+    background-image: linear-gradient(to right,  rgb(255, 255, 255),rgb(30, 30, 240));
+  
+    color: transparent; 
+    text-shadow: 5px 5px rgba(0, 0, 0, 0.178);
+    transform: scale(1.2); 
+}
+.button{
+  border: none;
+  border-radius: 10px;
+  background-color: aqua;
 }
 
 

@@ -6,7 +6,10 @@ import React from 'react';
 
 
 export default function ProductItem(props) {
-  const { item } = props;
+  const { item, handleAddToCart} = props;
+  
+
+
 
   return (
     <div className="card" style={{width: '18rem'}}>
@@ -15,7 +18,7 @@ export default function ProductItem(props) {
   <div className="card-body">
     <h5 className="card-title">{item.productName}</h5>
     <p className="card-text">{item.price}</p>
-    <Button>Mua</Button>
+    <Button onClick={() => handleAddToCart(item)}>Mua</Button>
   </div>
 </div>
   // <div className='cardlist' >

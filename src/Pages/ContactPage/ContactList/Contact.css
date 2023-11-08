@@ -1,0 +1,39 @@
+.contact{
+    margin-top: 3rem;
+
+    justify-content: center;
+    align-items: center;
+}
+.contact h1{
+    text-align: left;
+    margin-bottom: 3rem;
+}
+.contact__text{
+    text-align: left;
+  
+}
+.contact__text h1{
+    margin-bottom: 30px;
+}
+.contact__text h3{
+        margin-bottom: 20px;
+}
+
+.contact .ant-btn-default {
+    width: 100px;
+    display: flex;
+    background-color: #68be42 !important;
+    color: white !important;
+    padding: 20px 30px !important;
+   justify-content: center !important;
+   align-items: center !important;
+}
+.contact .ant-btn-default span {
+    font-size: 17px;
+    font-weight: 600;
+}
+.map{
+    width: 100%;
+    height: 400px;
+    margin-top: 5rem;
+}
