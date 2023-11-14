@@ -3,6 +3,7 @@ import { Button, Checkbox, Form, Input, message } from 'antd';
 import Usersev from '../service/user.service';
 import "./css/login.css";
 import { NavLink, useNavigate } from "react-router-dom";
+import SocialLogin from './SocialLogin';
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -140,10 +141,14 @@ export default function LoginPage() {
             span: 16,
           }}
         >
-          <Button type="primary" htmlType="submit">
-            Submit
+          <Button type="primary" htmlType="submit" >
+           Login
           </Button>
+          <div  style={{ marginBottom: '30px' }}>
+      <SocialLogin/>
+      </div>
         </Form.Item>
+    
         <div>
               <p href="">
                 Bạn đã tài khoản chưa?

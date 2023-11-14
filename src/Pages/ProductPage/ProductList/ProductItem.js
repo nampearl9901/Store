@@ -21,20 +21,5 @@ export default function ProductItem(props) {
     <Button onClick={() => handleAddToCart(item)}>Mua</Button>
   </div>
 </div>
-  // <div className='cardlist' >
-    
-  //    <div className='card' >
-  // <div className='card-item'>
-  // <div className='card-img'>
-  //  <img src={item.imageUrl} alt="" />
-  //  </div>
-  //   <div className='card-text'>
-  //   <h2 className="text-2xl">{item.productName}</h2>
-  //     <p>{item.price}</p>
-  //   </div>
-  //   <Button>Mua</Button>
-  // </div>
-  // </div>
-  //   </div>
   );
 }

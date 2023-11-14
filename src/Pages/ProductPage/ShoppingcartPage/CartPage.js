@@ -83,7 +83,7 @@ export default function CartPage({ changeQuantity }) {
           {gioHang.length > 0 ? (
             <div>
               <ShoppingcartPage gioHang={gioHang} changeQuantity={changeQuantity} totalPrice={calculateTotalPrice()} handleChangeQuantity={handleChangeQuantity} />
-              <Button onClick={handlePayment} >Thanh Toán</Button>  
+              <Button onClick={handlePayment} >Thanh Toán</Button>
             
             </div>
           ) : (

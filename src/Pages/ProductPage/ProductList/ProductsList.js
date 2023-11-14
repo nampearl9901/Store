@@ -27,11 +27,14 @@ export default function ProductsList() {
       setGioHang(JSON.parse(storedCart));
     }
   }, []);
+  
+  // luu xuống localstorage
   const saveCartToLocalStorage = (cartData) => {
     // Save shopping cart data to localStorage
     localStorage.setItem('shoppingCart', JSON.stringify(cartData));
   };
 
+  // thêm sản phẩm vào giỏ hàng
   const handleAddToCart = (data) => {
     let index = gioHang.findIndex((item) => item.id === data.id);
     let cloneGioHang = [...gioHang];
@@ -48,13 +51,11 @@ export default function ProductsList() {
     saveCartToLocalStorage(cloneGioHang);
   };
 
-
-
-
-
-  const handlePageChange = (page) => {
+// sự kiên  phân trang
+const handlePageChange = (page) => {
     setCurrentPage(page);
   };
+  // lấy sản phẩm lên 
 
   const renderProducts = () => {
     const startIndex = (currentPage - 1) * productsPerPage;
